@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — ENGUILD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #05080f;
+    --gold: #c9a84c;
+    --gold2: #f0d080;
+    --ember: #ff6b2b;
+    --teal: #00d4aa;
+    --text: #e8dcc8;
+    --muted: #6a7a6a;
+    --surface: #0a0f1a;
+    --border: #1a2030;
+  }
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+  background: var(–bg);
+  color: var(–text);
+  font-family: ‘Noto Sans JP’, sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  }
+
+nav {
+position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+display: flex; justify-content: space-between; align-items: center;
+padding: 24px 48px;
+background: rgba(5,8,15,0.92);
+border-bottom: 1px solid var(–border);
+backdrop-filter: blur(20px);
+}
+
+.nav-logo { font-family: ‘Cinzel’, serif; font-size: 20px; font-weight: 700; letter-spacing: 6px; color: var(–gold); text-decoration: none; }
+.nav-links { display: flex; gap: 40px; list-style: none; }
+.nav-links a { font-family: ‘JetBrains Mono’, monospace; font-size: 11px; color: var(–muted); text-decoration: none; letter-spacing: 3px; text-transform: uppercase; transition: color 0.3s; }
+.nav-links a:hover, .nav-links a.active { color: var(–gold); }
+
+/* PAGE HERO */
+.page-hero {
+padding: 160px 10vw 80px;
+position: relative;
+overflow: hidden;
+border-bottom: 1px solid var(–border);
+}
+
+.page-hero-bg {
+position: absolute; inset: 0;
+background:
+radial-gradient(ellipse 60% 80% at 80% 50%, rgba(201,168,76,0.10) 0%, transparent 60%),
+radial-gradient(ellipse 40% 60% at 10% 80%, rgba(255,107,43,0.08) 0%, transparent 50%);
+}
+
+.page-label {
+font-family: ‘JetBrains Mono’, monospace;
+font-size: 10px; color: var(–gold); letter-spacing: 6px;
+text-transform: uppercase; margin-bottom: 20px;
+display: flex; align-items: center; gap: 12px;
+}
+.page-label::before { content: ‘’; width: 30px; height: 1px; background: var(–gold); }
+
+.page-title {
+font-family: ‘Cinzel’, serif;
+font-size: clamp(48px, 10vw, 100px);
+font-weight: 900;
+background: linear-gradient(135deg, var(–gold2), var(–gold), var(–ember));
+-webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+line-height: 0.9;
+margin-bottom: 32px;
+}
+
+.page-sub {
+font-size: 16px; line-height: 2; color: var(–muted);
+max-width: 560px;
+}
+
+/* CONTENT */
+.content {
+padding: 100px 10vw;
+max-width: 1200px;
+}
+
+.section-label {
+font-family: ‘JetBrains Mono’, monospace;
+font-size: 10px; color: var(–gold); letter-spacing: 5px;
+text-transform: uppercase; margin-bottom: 16px;
+display: flex; align-items: center; gap: 12px;
+}
+.section-label::before { content: ‘’; width: 30px; height: 1px; background: var(–gold); }
+
+.section-title {
+font-family: ‘Cinzel’, serif;
+font-size: clamp(28px, 4vw, 48px);
+font-weight: 700; color: #fff;
+line-height: 1.1; margin-bottom: 48px;
+}
+
+/* MANIFESTO */
+.manifesto {
+border-left: 2px solid var(–gold);
+padding: 32px 40px;
+background: rgba(201,168,76,0.04);
+margin-bottom: 80px;
+}
+
+.manifesto p {
+font-size: 18px; line-height: 2.2;
+color: var(–text); font-weight: 300;
+}
+
+.manifesto strong {
+color: var(–gold); font-weight: 700;
+}
+
+/* VALUES */
+.values {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 1px;
+background: var(–border);
+border: 1px solid var(–border);
+margin-bottom: 100px;
+}
+
+.value-card {
+background: var(–surface);
+padding: 48px 40px;
+position: relative;
+overflow: hidden;
+transition: background 0.4s;
+}
+
+.value-card::after {
+content: attr(data-num);
+position: absolute;
+bottom: -10px; right: 20px;
+font-family: ‘Cinzel’, serif;
+font-size: 120px;
+font-weight: 900;
+color: rgba(201,168,76,0.04);
+line-height: 1;
+}
+
+.value-card:hover { background: #0d1420; }
+
+.value-num {
+font-family: ‘JetBrains Mono’, monospace;
+font-size: 10px; color: var(–gold);
+letter-spacing: 3px; margin-bottom: 20px;
+}
+
+.value-title {
+font-family: ‘Cinzel’, serif;
+font-size: 22px; color: #fff;
+margin-bottom: 16px;
+}
+
+.value-text {
+font-size: 13px; line-height: 2;
+color: var(–muted);
+}
+
+/* WHO */
+.who-list {
+display: flex;
+flex-direction: column;
+gap: 1px;
+background: var(–border);
+border: 1px solid var(–border);
+}
+
+.who-item {
+background: var(–surface);
+padding: 28px 40px;
+display: flex;
+align-items: center;
+gap: 24px;
+transition: background 0.3s, padding-left 0.3s;
+}
+
+.who-item:hover { background: #0d1420; padding-left: 52px; }
+
+.who-arrow { color: var(–gold); font-family: ‘JetBrains Mono’, monospace; font-size: 14px; }
+.who-text { font-size: 15px; color: var(–text); line-height: 1.6; }
+
+/* FOOTER */
+footer { padding: 48px; border-top: 1px solid var(–border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-logo { font-family: ‘Cinzel’, serif; font-size: 18px; font-weight: 700; color: var(–muted); letter-spacing: 4px; }
+.footer-copy { font-family: ‘JetBrains Mono’, monospace; font-size: 10px; color: var(–muted); letter-spacing: 1px; }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s, transform 0.8s; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">ENGUILD</a>
+  <ul class="nav-links">
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="join.html">Join</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-label">About ENGUILD</div>
+  <h1 class="page-title">GUILD<br>SPIRIT</h1>
+  <p class="page-sub">ENGUILDは、エンジニアのためのリアルコミュニティ。技術の話も、ゲームの話も、キャリアの話も。全部ここで。</p>
+</div>
+
+<div class="content">
+
+  <div class="manifesto reveal">
+    <p>
+      エンジニアは<strong>孤独</strong>になりやすい。<br>
+      リモートワーク、専門性の深化、忙しい日常。<br>
+      気づけば、本音で話せる仲間がいない。<br><br>
+      ENGUILDは、そんなエンジニアが<strong>リアルに集まれる場所</strong>。<br>
+      ゲームをして、飯を食って、語り合う。<br>
+      それだけでいい。
+    </p>
+  </div>
+
+  <div class="reveal">
+    <div class="section-label">Our Values</div>
+    <h2 class="section-title">ギルドの精神</h2>
+  </div>
+
+  <div class="values reveal">
+    <div class="value-card" data-num="I">
+      <div class="value-num">// 01</div>
+      <div class="value-title">Real Connection</div>
+      <p class="value-text">オンラインじゃなく、リアルで会う。画面越しでは生まれない化学反応が、ここにある。</p>
+    </div>
+    <div class="value-card" data-num="II">
+      <div class="value-num">// 02</div>
+      <div class="value-title">No Hierarchy</div>
+      <p class="value-text">経験年数もポジションも関係ない。エンジニアとして対等に、フラットに交わる場所。</p>
+    </div>
+    <div class="value-card" data-num="III">
+      <div class="value-num">// 03</div>
+      <div class="value-title">Play to Know</div>
+      <p class="value-text">ゲームは最高のアイスブレイク。遊びを通じて、人となりが自然と見えてくる。</p>
+    </div>
+    <div class="value-card" data-num="IV">
+      <div class="value-num">// 04</div>
+      <div class="value-title">Open Door</div>
+      <p class="value-text">はじめての参加でも大丈夫。誰でも歓迎、一人でも来やすい、そんな空気を大切にしてる。</p>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <div class="section-label">Who Joins</div>
+    <h2 class="section-title">こんな人が来てる</h2>
+  </div>
+
+  <div class="who-list reveal">
+    <div class="who-item">
+      <span class="who-arrow">→</span>
+      <span class="who-text">フリーランスで働いていて、エンジニア仲間が少ない</span>
+    </div>
+    <div class="who-item">
+      <span class="who-arrow">→</span>
+      <span class="who-text">転職・独立を考えていて、リアルな話が聞きたい</span>
+    </div>
+    <div class="who-item">
+      <span class="who-arrow">→</span>
+      <span class="who-text">技術の話ができる友達が欲しい</span>
+    </div>
+    <div class="who-item">
+      <span class="who-arrow">→</span>
+      <span class="who-text">単純に、エンジニアとゲームしたい</span>
+    </div>
+    <div class="who-item">
+      <span class="who-arrow">→</span>
+      <span class="who-text">新しいコミュニティに飛び込んでみたい</span>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">ENGUILD</div>
+  <div class="footer-copy">© 2025 ENGUILD — Engineer's Guild</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
