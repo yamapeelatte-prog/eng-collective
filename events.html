@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Events — ENGUILD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #05080f;
+    --gold: #c9a84c;
+    --gold2: #f0d080;
+    --ember: #ff6b2b;
+    --teal: #00d4aa;
+    --text: #e8dcc8;
+    --muted: #6a7a6a;
+    --surface: #0a0f1a;
+    --border: #1a2030;
+  }
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(–bg); color: var(–text); font-family: ‘Noto Sans JP’, sans-serif; font-weight: 300; overflow-x: hidden; }
+
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 24px 48px; background: rgba(5,8,15,0.92); border-bottom: 1px solid var(–border); backdrop-filter: blur(20px); }
+.nav-logo { font-family: ‘Cinzel’, serif; font-size: 20px; font-weight: 700; letter-spacing: 6px; color: var(–gold); text-decoration: none; }
+.nav-links { display: flex; gap: 40px; list-style: none; }
+.nav-links a { font-family: ‘JetBrains Mono’, monospace; font-size: 11px; color: var(–muted); text-decoration: none; letter-spacing: 3px; text-transform: uppercase; transition: color 0.3s; }
+.nav-links a:hover, .nav-links a.active { color: var(–gold); }
+
+.page-hero {
+padding: 160px 10vw 80px;
+position: relative; overflow: hidden;
+border-bottom: 1px solid var(–border);
+}
+
+.page-hero-bg {
+position: absolute; inset: 0;
+background:
+radial-gradient(ellipse 70% 80% at 90% 30%, rgba(255,107,43,0.10) 0%, transparent 60%),
+radial-gradient(ellipse 50% 50% at 5% 90%, rgba(201,168,76,0.08) 0%, transparent 50%);
+}
+
+.page-label { font-family: ‘JetBrains Mono’, monospace; font-size: 10px; color: var(–gold); letter-spacing: 6px; text-transform: uppercase; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+.page-label::before { content: ‘’; width: 30px; height: 1px; background: var(–gold); }
+
+.page-title { font-family: ‘Cinzel’, serif; font-size: clamp(48px, 10vw, 100px); font-weight: 900; background: linear-gradient(135deg, var(–gold2), var(–gold), var(–ember)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 0.9; margin-bottom: 32px; }
+.page-sub { font-size: 16px; line-height: 2; color: var(–muted); max-width: 560px; }
+
+/* EVENTS */
+.events-wrap { padding: 100px 10vw; }
+
+.section-label { font-family: ‘JetBrains Mono’, monospace; font-size: 10px; color: var(–gold); letter-spacing: 5px; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+.section-label::before { content: ‘’; width: 30px; height: 1px; background: var(–gold); }
+
+.section-title { font-family: ‘Cinzel’, serif; font-size: clamp(28px, 4vw, 48px); font-weight: 700; color: #fff; line-height: 1.1; margin-bottom: 56px; }
+
+/* EVENT CARDS */
+.event-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+gap: 1px;
+background: var(–border);
+border: 1px solid var(–border);
+margin-bottom: 100px;
+}
+
+.event-card {
+background: var(–surface);
+padding: 48px 40px;
+position: relative;
+overflow: hidden;
+transition: background 0.4s;
+}
+
+.event-card::before {
+content: ‘’;
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 3px;
+background: linear-gradient(90deg, var(–gold), var(–ember));
+transform: scaleX(0);
+transform-origin: left;
+transition: transform 0.4s;
+}
+
+.event-card:hover { background: #0d1420; }
+.event-card:hover::before { transform: scaleX(1); }
+
+.event-badge {
+display: inline-block;
+padding: 4px 14px;
+font-family: ‘JetBrains Mono’, monospace;
+font-size: 9px;
+letter-spacing: 3px;
+text-transform: uppercase;
+border: 1px solid rgba(201,168,76,0.3);
+color: var(–gold);
+margin-bottom: 28px;
+}
+
+.event-badge.hot { border-color: rgba(255,107,43,0.3); color: var(–ember); }
+.event-badge.soon { border-color: rgba(0,212,170,0.3); color: var(–teal); }
+
+.event-date-block {
+margin-bottom: 24px;
+}
+
+.event-month { font-family: ‘JetBrains Mono’, monospace; font-size: 10px; color: var(–muted); letter-spacing: 3px; text-transform: uppercase; }
+
+.event-day {
+font-family: ‘Cinzel’, serif;
+font-size: 64px; font-weight: 700;
+background: linear-gradient(135deg, var(–gold2), var(–gold));
+-webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+line-height: 1;
+}
+
+.event-name { font-family: ‘Cinzel’, serif; font-size: 22px; color: #fff; margin-bottom: 16px; letter-spacing: 1px; }
+
+.event-meta { display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; }
+.meta-item { font-family: ‘JetBrains Mono’, monospace; font-size: 11px; color: var(–muted); letter-spacing: 1px; display: flex; align-items: center; gap: 8px; }
+
+.event-desc { font-size: 13px; line-height: 1.9; color: var(–muted); border-top: 1px solid var(–border); padding-top: 24px; }
+
+/* PAST */
+.past-list { display: flex; flex-direction: column; gap: 1px; background: var(–border); border: 1px solid var(–border); opacity: 0.6; }
+.past-item { background: var(–surface); padding: 24px 40px; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+.past-name { font-size: 14px; color: var(–text); }
+.past-date { font-family: ‘JetBrains Mono’, monospace; font-size: 11px; color: var(–muted); letter-spacing: 1px; }
+.past-tag { font-family: ‘JetBrains Mono’, monospace; font-size: 9px; letter-spacing: 2px; color: var(–muted); border: 1px solid var(–border); padding: 3px 10px; text-transform: uppercase; }
+
+footer { padding: 48px; border-top: 1px solid var(–border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-logo { font-family: ‘Cinzel’, serif; font-size: 18px; font-weight: 700; color: var(–muted); letter-spacing: 4px; }
+.footer-copy { font-family: ‘JetBrains Mono’, monospace; font-size: 10px; color: var(–muted); letter-spacing: 1px; }
+
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s, transform 0.8s; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">ENGUILD</a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="events.html" class="active">Events</a></li>
+    <li><a href="join.html">Join</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-label">Guild Events</div>
+  <h1 class="page-title">EVENTS</h1>
+  <p class="page-sub">定期開催のゲーム会・交流イベント。次の開催で、ギルドに参加してみよう。</p>
+</div>
+
+<div class="events-wrap">
+
+  <div class="reveal">
+    <div class="section-label">Upcoming</div>
+    <h2 class="section-title">近日開催</h2>
+  </div>
+
+  <div class="event-grid reveal">
+    <div class="event-card">
+      <div class="event-badge hot">残りわずか</div>
+      <div class="event-date-block">
+        <div class="event-month">April 2025</div>
+        <div class="event-day">12</div>
+      </div>
+      <div class="event-name">Board Game Night vol.3</div>
+      <div class="event-meta">
+        <div class="meta-item">📍 渋谷（詳細は参加者に共有）</div>
+        <div class="meta-item">🕗 19:00〜22:00</div>
+        <div class="meta-item">👥 定員 20名</div>
+      </div>
+      <div class="event-desc">カタン、ドミニオン、ウボンゴなど。初めての方も大歓迎。ゲームを通じてエンジニア仲間を作ろう。</div>
+    </div>
+
+```
+<div class="event-card">
+  <div class="event-badge soon">New</div>
+  <div class="event-date-block">
+    <div class="event-month">April 2025</div>
+    <div class="event-day">26</div>
+  </div>
+  <div class="event-name">Poker Night vol.1</div>
+  <div class="event-meta">
+    <div class="meta-item">📍 新宿（詳細は参加者に共有）</div>
+    <div class="meta-item">🕗 19:00〜22:00</div>
+    <div class="meta-item">👥 定員 16名</div>
+  </div>
+  <div class="event-desc">テキサスホールデムのポーカー会。初心者向けのレクチャーも行います。駆け引きを楽しもう。</div>
+</div>
+
+<div class="event-card">
+  <div class="event-badge">受付中</div>
+  <div class="event-date-block">
+    <div class="event-month">May 2025</div>
+    <div class="event-day">10</div>
+  </div>
+  <div class="event-name">LT Night × 交流会</div>
+  <div class="event-meta">
+    <div class="meta-item">📍 渋谷（詳細は参加者に共有）</div>
+    <div class="meta-item">🕕 18:30〜21:30</div>
+    <div class="meta-item">👥 定員 30名</div>
+  </div>
+  <div class="event-desc">5分のライトニングトークと交流会。発表者も聴衆も大歓迎。エンジニア同士で知見を共有しよう。</div>
+</div>
+```
+
+  </div>
+
+  <div class="reveal">
+    <div class="section-label">Past Events</div>
+    <h2 class="section-title">過去のイベント</h2>
+  </div>
+
+  <div class="past-list reveal">
+    <div class="past-item">
+      <span class="past-name">Board Game Night vol.2</span>
+      <span class="past-date">2025.03.08</span>
+      <span class="past-tag">Ended</span>
+    </div>
+    <div class="past-item">
+      <span class="past-name">新年エンジニア交流会</span>
+      <span class="past-date">2025.01.18</span>
+      <span class="past-tag">Ended</span>
+    </div>
+    <div class="past-item">
+      <span class="past-name">Board Game Night vol.1</span>
+      <span class="past-date">2024.12.07</span>
+      <span class="past-tag">Ended</span>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">ENGUILD</div>
+  <div class="footer-copy">© 2025 ENGUILD — Engineer's Guild</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
