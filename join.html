@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join — ENGUILD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #05080f; --gold: #c9a84c; --gold2: #f0d080; --ember: #ff6b2b;
+    --teal: #00d4aa; --text: #e8dcc8; --muted: #6a7a6a;
+    --surface: #0a0f1a; --border: #1a2030;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Noto Sans JP', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 24px 48px; background: rgba(5,8,15,0.92); border-bottom: 1px solid var(–border); backdrop-filter: blur(20px); }
+.nav-logo { font-family: ‘Cinzel’, serif; font-size: 20px; font-weight: 700; letter-spacing: 6px; color: var(–gold); text-decoration: none; }
+.nav-links { display: flex; gap: 40px; list-style: none; }
+.nav-links a { font-family: ‘JetBrains Mono’, monospace; font-size: 11px; color: var(–muted); text-decoration: none; letter-spacing: 3px; text-transform: uppercase; transition: color 0.3s; }
+.nav-links a:hover, .nav-links a.active { color: var(–gold); }
+
+.page-hero { padding: 160px 10vw 80px; position: relative; overflow: hidden; border-bottom: 1px solid var(–border); }
+.page-hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 80% 40%, rgba(0,212,170,0.08) 0%, transparent 60%), radial-gradient(ellipse 50% 60% at 10% 70%, rgba(201,168,76,0.09) 0%, transparent 50%); }
+.page-label { font-family: ‘JetBrains Mono’, monospace; font-size: 10px; color: var(–gold); letter-spacing: 6px; text-transform: uppercase; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+.page-label::before { content: ‘’; width: 30px; height: 1px; background: var(–gold); }
+.page-title { font-family: ‘Cinzel’, serif; font-size: clamp(48px, 10vw, 100px); font-weight: 900; background: linear-gradient(135deg, var(–gold2), var(–gold), var(–teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 0.9; margin-bottom: 32px; }
+.page-sub { font-size: 16px; line-height: 2; color: var(–muted); max-width: 560px; }
+
+.content { padding: 100px 10vw; }
+
+.section-label { font-family: ‘JetBrains Mono’, monospace; font-size: 10px; color: var(–gold); letter-spacing: 5px; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+.section-label::before { content: ‘’; width: 30px; height: 1px; background: var(–gold); }
+.section-title { font-family: ‘Cinzel’, serif; font-size: clamp(28px, 4vw, 48px); font-weight: 700; color: #fff; line-height: 1.1; margin-bottom: 48px; }
+
+/* STEPS */
+.steps { display: flex; flex-direction: column; gap: 1px; background: var(–border); border: 1px solid var(–border); margin-bottom: 80px; }
+
+.step { background: var(–surface); padding: 40px 48px; display: grid; grid-template-columns: 60px 1fr; gap: 32px; align-items: start; transition: background 0.3s; }
+.step:hover { background: #0d1420; }
+
+.step-num { font-family: ‘Cinzel’, serif; font-size: 48px; font-weight: 700; background: linear-gradient(135deg, var(–gold2), var(–gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+
+.step-title { font-family: ‘Cinzel’, serif; font-size: 20px; color: #fff; margin-bottom: 12px; }
+.step-text { font-size: 14px; line-height: 2; color: var(–muted); }
+
+/* CONTACT */
+.contact-card {
+border: 1px solid rgba(201,168,76,0.2);
+background: rgba(201,168,76,0.04);
+padding: 64px 56px;
+text-align: center;
+position: relative;
+overflow: hidden;
+}
+
+.contact-card::before {
+content: ‘’;
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 2px;
+background: linear-gradient(90deg, transparent, var(–gold), var(–ember), transparent);
+}
+
+.contact-card h3 { font-family: ‘Cinzel’, serif; font-size: 32px; font-weight: 700; color: #fff; margin-bottom: 16px; }
+.contact-card p { font-size: 15px; line-height: 2; color: var(–muted); margin-bottom: 40px; }
+
+.contact-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+
+.btn-gold { display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(135deg, var(–gold), var(–ember)); color: #000; padding: 16px 36px; font-family: ‘JetBrains Mono’, monospace; font-size: 11px; font-weight: 400; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; transition: all 0.3s; clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px)); }
+.btn-gold:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(201,168,76,0.3); }
+
+.btn-ghost { display: inline-flex; align-items: center; gap: 12px; border: 1px solid rgba(201,168,76,0.3); color: var(–gold); padding: 16px 36px; font-family: ‘JetBrains Mono’, monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; text-decoration: none; transition: all 0.3s; }
+.btn-ghost:hover { background: rgba(201,168,76,0.08); border-color: var(–gold); }
+
+footer { padding: 48px; border-top: 1px solid var(–border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-logo { font-family: ‘Cinzel’, serif; font-size: 18px; font-weight: 700; color: var(–muted); letter-spacing: 4px; }
+.footer-copy { font-family: ‘JetBrains Mono’, monospace; font-size: 10px; color: var(–muted); letter-spacing: 1px; }
+
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s, transform 0.8s; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">ENGUILD</a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="join.html" class="active">Join</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-label">Join the Guild</div>
+  <h1 class="page-title">JOIN<br>US</h1>
+  <p class="page-sub">参加方法はシンプル。イベントに申し込んで、来るだけでOK。まずは一歩、踏み出してみよう。</p>
+</div>
+
+<div class="content">
+
+  <div class="reveal">
+    <div class="section-label">How to Join</div>
+    <h2 class="section-title">参加の流れ</h2>
+  </div>
+
+  <div class="steps reveal">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div>
+        <div class="step-title">イベントを選ぶ</div>
+        <p class="step-text">Eventsページから気になるイベントを見つけてください。ボードゲーム、ポーカー、LT会など定期的に開催しています。</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div>
+        <div class="step-title">SNSまたはDMで連絡</div>
+        <p class="step-text">TwitterまたはInstagramのDMで「参加したい」と一言送るだけ。難しい登録や会費は一切ありません。</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div>
+        <div class="step-title">当日来るだけ</div>
+        <p class="step-text">確認後、詳細の場所・時間をお知らせします。一人で来ても大丈夫。エンジニア同士、すぐに打ち解けられます。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-card reveal">
+    <h3>まずは声をかけて</h3>
+    <p>難しく考えなくて大丈夫。<br>「行ってみたい」その気持ちだけで十分です。</p>
+    <div class="contact-links">
+      <a href="https://twitter.com/" class="btn-gold" target="_blank">Twitter / X でDM</a>
+      <a href="https://instagram.com/" class="btn-ghost" target="_blank">Instagram でDM</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">ENGUILD</div>
+  <div class="footer-copy">© 2025 ENGUILD — Engineer's Guild</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
